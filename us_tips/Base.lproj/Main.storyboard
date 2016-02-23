@@ -13,9 +13,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" id="fNa-Xj-liO">
-                                <rect key="frame" x="28" y="91" width="272" height="52"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" id="fNa-Xj-liO">
+                                <rect key="frame" x="28" y="91" width="272" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
@@ -86,7 +87,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="billField" destination="fNa-Xj-liO" id="pmE-LC-raj"/>
+                        <outlet property="billField" destination="fNa-Xj-liO" id="bc6-yZ-48O"/>
                         <outlet property="resultView" destination="Ay1-X1-J4b" id="EFC-Y6-BCl"/>
                         <outlet property="tipLabel" destination="bxu-Bo-Q8V" id="5J9-dn-NUM"/>
                         <outlet property="tipPercentageSegment" destination="pLf-lX-oiJ" id="xJP-JG-Zvx"/>

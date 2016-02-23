@@ -31,12 +31,40 @@ class ViewController: UIViewController {
         tipPercentageSegment.selectedSegmentIndex = SettingManager.instance.tipPercentageIndex
         
         
-        billField.becomeFirstResponder()
         
         tipPercentageSegment.alpha = 0
         resultView.alpha = 0
+        
+        
+        
+        billField.becomeFirstResponder()
+        
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        let lastBillAmount = SettingManager.instance.getLastBillAmount()
+        
+        if(lastBillAmount.characters.count > 0) {
+            billField.text = lastBillAmount
+            calculateTip()
+            showResultAnimation(true)
+        }
+        
+        
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        SettingManager.instance.saveLastBillAmount(billField.text!)
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,8 +96,11 @@ class ViewController: UIViewController {
         let tip = amountBill * tipPercentage
         let total = amountBill + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        //tipLabel.text = String(format: "$%.2f", tip)
+        //totalLabel.text = String(format: "$%.2f", total)
+        
+        tipLabel.text = formatCurrency(tip)
+        totalLabel.text = formatCurrency(total)
     }
     
     @IBAction func onTipPercentageChanged(sender: AnyObject) {
@@ -85,11 +116,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingBegin(sender: AnyObject) {
-        
+        //print("begin editing")
     }
     
     @IBAction func onEditingEnd(sender: AnyObject) {
-        
+        //print("end editing")
     }
     
     func showResultAnimation(isShow:Bool = true) {
@@ -107,5 +138,14 @@ class ViewController: UIViewController {
             self.resultView.alpha = alpha
             
         }, completion: nil)
+    }
+    
+    func formatCurrency(number:Double)->String {
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale.currentLocale()
+        
+        return formatter.stringFromNumber(number)!
     }
 }
